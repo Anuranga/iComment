@@ -1,0 +1,39 @@
+{
+	"definitions": {},
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"id": "http://pickme.lk",
+	"type": "object",
+	"properties": {
+		"data": {
+			"id": "/properties/data",
+			"type": "array",
+			"items": {
+				"id": "/properties/data/items",
+				"type": "object",
+				"properties": {
+					"shift": {
+						"id": "/properties/data/items/properties/shift",
+						"type": "string",
+						"title": "The Shift Schema.",
+						"description": "An explanation about the purpose of this instance.",
+						"default": ""
+					},
+					"rating": {
+						"id": "/properties/data/items/properties/rating",
+						"type": "integer",
+						"title": "The Rating Schema.",
+						"description": "An explanation about the purpose of this instance.",
+						"default": 0
+					},
+					"directional": {
+						"id": "/properties/data/items/properties/directional",
+						"type": "integer",
+						"title": "The Directional Schema.",
+						"description": "An explanation about the purpose of this instance.",
+						"default": 0
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,226 @@
+#%RAML 0.8
+
+title: PickMe Sample
+version: 2.0.0
+mediaType: application/json
+protocols: [HTTP, HTTPS]
+baseUri: http://api.sample.pickme.lk/v2
+documentation:
+  - title: Introduction
+    content: |
+      This project is a starting point and a template for building PickMe service APIs using PHP.
+
+schemas:
+  - RES_ValidationError: !include schemas\response\error_422.json
+  - RES_ServerException: !include schemas\response\error_500.json
+
+  - REQ_LoginItem: !include schemas\request\login.json
+  - RES_Token: !include schemas\response\token.json
+
+  - RES_Propfile: !include schemas\response\profile.json
+  - RES_ShiftSummary: !include schemas\response\shift_summary.json
+  - RES_TripSummary: !include schemas\response\trip_summary.json
+
+traits:
+  - Filtereble: !include traits\filtarable.raml
+  - Truncatable: !include traits\truncatable.raml
+  - Paginatable: !include traits\paginatable.raml
+  - Authenticatable: !include traits\authenticatable.raml
+
+
+# ======================================================================================================================
+#   AUTHENTICATE API CALLS
+# ======================================================================================================================
+
+# /authenticate ___
+/auth:
+
+  # login
+  /login:
+    displayName: Login
+
+    post:
+      description: Login to the device and get a token.
+      body:
+        application/json:
+          schema: REQ_LoginItem
+          example: !include examples\request\login.json
+      responses:
+        200: # logged-in
+          description: Successfully logged-in
+          body:
+            application/json:
+              schema: RES_Token
+              example: !include examples\response\token.json
+        422: # validation error
+          description: Validation error
+          body:
+            application/json:
+              schema: RES_ValidationError
+              example: !include examples\response\error_422.json
+        500: # exception
+          description: An exception occurred while logging in
+          body:
+           application/json:
+            schema: RES_ServerException
+            example: !include examples\response\error_500.json
+
+
+  # logout
+  /logout:
+    displayName: Logout
+
+    post:
+      is: [Authenticatable]
+      description: Logout from the device.
+      responses:
+        204: # Logged-out
+          description: Successfully logged-out
+        500: # exception
+          description: An exception occurred while logging out
+          body:
+           application/json:
+            schema: RES_ServerException
+            example: !include examples\response\error_500.json
+
+
+# ======================================================================================================================
+#   DRIVER STATUS UPDATE API CALLS
+# ======================================================================================================================
+
+# /driver ___
+/driver:
+
+  # driver_id
+  /{driverId}:
+
+    # /driver/{driverId}/profile ___
+    /profile:
+      displayName: Driver Profile
+
+      get:
+        is: [Authenticatable]
+        description: Get the driver profile
+        responses:
+          200:
+            description: Successfully retreived the profile
+            body:
+              application/json:
+                schema: RES_Profile
+                example: !include examples\response\profile.json
+          500: # exception
+            description: An exception occurred while retreiving profile
+            body:
+             application/json:
+              schema: RES_ServerException
+              example: !include examples\response\error_500.json
+
+
+      # /driver/{driverId}/profile/shift ___
+      /shift:
+        displayName: Driver Shift Summary
+
+        get:
+          is: [Authenticatable]
+          description: Get the driver shift summary
+          responses:
+            200:
+              description: Successfully retreived the shift summary
+              body:
+                application/json:
+                  schema: RES_ShiftSummary
+                  example: !include examples\response\shift_summary.json
+            500: # exception
+              description: An exception occurred while retreiving shift summary
+              body:
+               application/json:
+                schema: RES_ServerException
+                example: !include examples\response\error_500.json
+
+
+      # /driver/{driverId}/profile/trip ___
+      /trip:
+        displayName: Driver Trip Summary
+
+        get:
+          is: [Authenticatable]
+          description: Get the driver trip summary
+          responses:
+            200:
+              description: Successfully retreived the trip summary
+              body:
+                application/json:
+                  schema: RES_TripSummary
+                  example: !include examples\response\trip_summary.json
+            500: # exception
+              description: An exception occurred while retreiving trip summary
+              body:
+               application/json:
+                schema: RES_ServerException
+                example: !include examples\response\error_500.json
+
+
+    # shift
+    /shift:
+
+      # /driver/{driverId}/shift/in ___
+      /in:
+        displayName: Driver shift `IN`
+
+        put:
+          is: [Authenticatable]
+          description: Set driver shift status to `IN`
+          responses:
+            204: # shift status set to in
+              description: Successfully changed shift status to `IN`
+            500: # exception
+              description: An exception occurred while changing shift status
+              body:
+               application/json:
+                schema: RES_ServerException
+                example: !include examples\response\error_500.json
+
+
+      # /driver/{driverId}/shift/out ___
+      /out:
+        displayName: Driver shift `OUT`
+
+        put:
+          is: [Authenticatable]
+          description: Set driver shift status to `OUT`
+          responses:
+            204: # shift status set to out
+              description: Successfully changed shift status to `OUT`
+            500: # exception
+              description: An exception occurred while changing shift status
+              body:
+               application/json:
+                schema: RES_ServerException
+                example: !include examples\response\error_500.json
+
+
+    # /driver/{driverId}/support ___
+    /support:
+
+      post:
+        is: [Authenticatable]
+        description: Create a driver support
+        body:
+          application/json:
+            schema: REQ_SupportItem
+            example: !include examples\request\support.json
+        responses:
+          201: # logged-in
+            description: Successfully created the support
+          422: # validation error
+            description: Validation error
+            body:
+              application/json:
+                schema: RES_ValidationError
+                example: !include examples\response\error_422.json
+          500: # exception
+            description: An exception occurred while logging in
+            body:
+             application/json:
+              schema: RES_ServerException
+              example: !include examples\response\error_500.json

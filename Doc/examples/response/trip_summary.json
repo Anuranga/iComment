@@ -1,0 +1,17 @@
+{
+  "data": [
+    {
+      "trips": {
+        "completed": 0,
+        "passenger_cancelled": 0,
+        "driver_cancelled": 0
+      },
+      "earnings": {
+        "total": 0
+      },
+      "time": {
+        "total": 0
+      }
+    }
+  ]
+}

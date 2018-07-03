@@ -1,0 +1,11 @@
+{
+	"trip": 0,
+	"category": {
+		"id": 0,
+		"name": "Category"
+	},
+	"reason": {
+		"id": 0,
+		"name": "Reason"
+	}
+}

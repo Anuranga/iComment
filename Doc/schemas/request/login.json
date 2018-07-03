@@ -1,0 +1,18 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"definitions": {},
+	"id": "http://pickme.lk",
+	"properties": {
+		"password": {
+			"id": "/properties/password",
+			"type": "string",
+			"required": true
+		},
+		"phone": {
+			"id": "/properties/phone",
+			"type": "integer",
+			"required": true
+		}
+	},
+	"type": "object"
+}

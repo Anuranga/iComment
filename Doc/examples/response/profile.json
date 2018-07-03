@@ -1,0 +1,34 @@
+{
+  "data": [
+    {
+      "profile": {
+        "id": 9624,
+        "name": "Ponting",
+        "phone": "777169807",
+        "photo": "575e85ac4c816.png",
+        "language": [
+          1,
+          2,
+          3,
+          5
+        ]
+      },
+      "vehicle": {
+        "type": {
+          "id": null,
+          "name": null
+        },
+        "passengers": null,
+        "luggage": null,
+        "speed": null
+      },
+      "finance": {
+        "bank": {
+          "name": "HNB",
+          "branch": "KURUNEGALA-19",
+          "account": "123456789012"
+        }
+      }
+    }
+  ]
+}

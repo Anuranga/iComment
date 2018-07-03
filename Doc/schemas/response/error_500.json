@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "definitions": {},
+  "id": "http://pickme.lk",
+  "properties": {
+    "errors": {
+      "id": "/properties/errors",
+      "items": {
+        "id": "/properties/errors/items",
+        "properties": {
+          "code": {
+            "id": "/properties/errors/items/properties/code",
+            "type": "integer"
+          },
+          "file": {
+            "id": "/properties/errors/items/properties/file",
+            "type": "string"
+          },
+          "line": {
+            "id": "/properties/errors/items/properties/line",
+            "type": "integer"
+          },
+          "message": {
+            "id": "/properties/errors/items/properties/message",
+            "type": "string"
+          },
+          "trace": {
+            "id": "/properties/errors/items/properties/trace",
+            "type": "string"
+          },
+          "type": {
+            "id": "/properties/errors/items/properties/type",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object"
+}
