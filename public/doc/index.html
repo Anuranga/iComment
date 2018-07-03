@@ -1,0 +1,716 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>PickMe Sample API documentation</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+    <style>
+        .parent {
+            color: #999;
+        }
+        .list-group-item > .badge {
+            float: none;
+            margin-right: 6px;
+        }
+        .panel-title > .block > .badge {
+            float: right;
+            margin-left: 5px;
+        }
+        .badge {
+            border-radius: 0;
+            text-transform: uppercase;
+            width: 60px;
+            font-weight: normal;
+            color: #f3f3f6;
+            line-height: normal;
+        }
+        .block .badge {
+            visibility: hidden;
+        }
+        .block.collapsed .badge {
+            visibility: visible;
+        }
+        .badge_get {
+            background-color: #63a8e2;
+        }
+        .badge_post {
+            background-color: #6cbd7d;
+        }
+        .badge_put {
+            background-color: #22bac4;
+        }
+        .badge_delete {
+            background-color: #d26460;
+        }
+        .block {
+            display: block;
+        }
+        .list-group, .panel-group {
+            margin-bottom: 0;
+        }
+        .panel-group .panel+.panel-white {
+            margin-top: 0;
+        }
+        .panel-group .panel-white {
+            border-bottom: 1px solid #F5F5F5;
+            border-radius: 0;
+        }
+        .panel-white:last-child {
+            border-bottom-color: white;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+        .panel-white .panel-heading {
+            background: white;
+        }
+        .tab-pane ul {
+            padding-left: 2em;
+        }
+        .tab-content {
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            padding: 10px;
+        }
+        #sidebar {
+            margin-top: 30px;
+        }
+        .resource-description {
+            border-bottom: 1px solid #ddd;
+            background: #fcfcfc;
+            padding: 15px 15px 0 15px;
+            margin: -15px -15px 10px -15px;
+        }
+    </style>
+</head>
+
+<body data-spy="scroll" data-target="#sidebar">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9" role="main">
+                <div class="page-header">
+                    <h1>PickMe Sample API documentation <small>version 2.0.0</small></h1>
+                    <p>http://api.sample.pickme.lk/v2</p>
+
+                        <h3>Introduction</h3>
+                        <p>This project is a starting point and a template for building PickMe service APIs using PHP.</p>
+
+                </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 id="_auth" class="panel-title">/auth</h3>
+                        </div>
+
+                        <div class="panel-body">
+
+                            <div class="panel-group">
+                                <div class="panel panel-white">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a class="block collapsed" data-toggle="collapse" href="#panel__auth">
+                                                <span class="parent"></span>/auth
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="panel__auth" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <div class="list-group">
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                                
+                                    <div class="panel panel-white">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a class="block collapsed" data-toggle="collapse" href="#panel__auth_login">
+                                                        <span class="badge badge_post">post</span>
+                                                    <span class="parent">/auth</span>/login
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="panel__auth_login" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                <div class="list-group">
+                                                        <a href="#" data-toggle="modal" data-target="#_auth_login_post" class="list-group-item">
+                                                            <span class="badge badge_post">post</span>
+                                                            Login to the device and get a token.
+                                                        </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+                                            <div class="modal fade" id="_auth_login_post">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                            <h4 class="modal-title" id="myModalLabel">
+                                                                <span class="badge badge_post">post</span>
+                                                                <span class="parent">/auth</span>/login
+                                                            </h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="alert alert-info"><p>Login to the device and get a token.</p>
+                                    </div>
+                                    
+                                                            <!-- Nav tabs -->
+                                                            <ul class="nav nav-tabs">
+                                                                <li class="active"><a href="#_auth_login_post_request" data-toggle="tab">Request</a></li>
+                                                                <li><a href="#_auth_login_post_response" data-toggle="tab">Response</a></li>
+                                                            </ul>
+                                    
+                                                            <!-- Tab panes -->
+                                                            <div class="tab-content">
+                                                                <div class="tab-pane active" id="_auth_login_post_request">
+                                    
+                                    
+                                                                        <h4>Body</h4>
+                                                                            <p><strong>Type: application/json</strong></p>
+                                                                            <pre>{
+                                    	&quot;phone&quot;: 111111111,
+                                    	&quot;password&quot;:&quot;password&quot;
+                                    }
+                                    </pre>
+                                                                </div>
+                                    
+                                                                <div class="tab-pane" id="_auth_login_post_response">
+                                                                        <h4>Responses</h4>
+                                                                        <ul>
+                                                                                <li><strong>200</strong>: Successfully logged-in</li>
+                                                                                <li><strong>422</strong>: Validation error</li>
+                                                                                <li><strong>500</strong>: An exception occurred while logging in</li>
+                                                                        </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    
+                                    <div class="panel panel-white">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a class="block collapsed" data-toggle="collapse" href="#panel__auth_logout">
+                                                        <span class="badge badge_post">post</span>
+                                                    <span class="parent">/auth</span>/logout
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="panel__auth_logout" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                <div class="list-group">
+                                                        <a href="#" data-toggle="modal" data-target="#_auth_logout_post" class="list-group-item">
+                                                            <span class="badge badge_post">post</span>
+                                                            Logout from the device.
+                                                        </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+                                            <div class="modal fade" id="_auth_logout_post">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                            <h4 class="modal-title" id="myModalLabel">
+                                                                <span class="badge badge_post">post</span>
+                                                                <span class="parent">/auth</span>/logout
+                                                            </h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="alert alert-info"><p>Logout from the device.</p>
+                                    </div>
+                                    
+                                                            <!-- Nav tabs -->
+                                                            <ul class="nav nav-tabs">
+                                                                <li class="active"><a href="#_auth_logout_post_request" data-toggle="tab">Request</a></li>
+                                                                <li><a href="#_auth_logout_post_response" data-toggle="tab">Response</a></li>
+                                                            </ul>
+                                    
+                                                            <!-- Tab panes -->
+                                                            <div class="tab-content">
+                                                                <div class="tab-pane active" id="_auth_logout_post_request">
+                                    
+                                    
+                                                                </div>
+                                    
+                                                                <div class="tab-pane" id="_auth_logout_post_response">
+                                                                        <h4>Responses</h4>
+                                                                        <ul>
+                                                                                <li><strong>204</strong>: Successfully logged-out</li>
+                                                                                <li><strong>500</strong>: An exception occurred while logging out</li>
+                                                                        </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 id="_driver" class="panel-title">/driver</h3>
+                        </div>
+
+                        <div class="panel-body">
+
+                            <div class="panel-group">
+                                <div class="panel panel-white">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a class="block collapsed" data-toggle="collapse" href="#panel__driver">
+                                                <span class="parent"></span>/driver
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="panel__driver" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <div class="list-group">
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                                
+                                    <div class="panel panel-white">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a class="block collapsed" data-toggle="collapse" href="#panel__driver__driverId_">
+                                                    <span class="parent">/driver</span>/{driverId}
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="panel__driver__driverId_" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                <div class="list-group">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+                                    </div>
+                                    
+                                        <div class="panel panel-white">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a class="block collapsed" data-toggle="collapse" href="#panel__driver__driverId__profile">
+                                                            <span class="badge badge_get">get</span>
+                                                        <span class="parent">/driver/{driverId}</span>/profile
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="panel__driver__driverId__profile" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <div class="list-group">
+                                                            <a href="#" data-toggle="modal" data-target="#_driver__driverId__profile_get" class="list-group-item">
+                                                                <span class="badge badge_get">get</span>
+                                                                Get the driver profile
+                                                            </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        
+                                                <div class="modal fade" id="_driver__driverId__profile_get">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                <h4 class="modal-title" id="myModalLabel">
+                                                                    <span class="badge badge_get">get</span>
+                                                                    <span class="parent">/driver/{driverId}</span>/profile
+                                                                </h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="alert alert-info"><p>Get the driver profile</p>
+                                        </div>
+                                        
+                                                                <!-- Nav tabs -->
+                                                                <ul class="nav nav-tabs">
+                                                                    <li class="active"><a href="#_driver__driverId__profile_get_request" data-toggle="tab">Request</a></li>
+                                                                    <li><a href="#_driver__driverId__profile_get_response" data-toggle="tab">Response</a></li>
+                                                                </ul>
+                                        
+                                                                <!-- Tab panes -->
+                                                                <div class="tab-content">
+                                                                    <div class="tab-pane active" id="_driver__driverId__profile_get_request">
+                                        
+                                        
+                                                                    </div>
+                                        
+                                                                    <div class="tab-pane" id="_driver__driverId__profile_get_response">
+                                                                            <h4>Responses</h4>
+                                                                            <ul>
+                                                                                    <li><strong>200</strong>: Successfully retreived the profile</li>
+                                                                                    <li><strong>500</strong>: An exception occurred while retreiving profile</li>
+                                                                            </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                        
+                                            <div class="panel panel-white">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                        <a class="block collapsed" data-toggle="collapse" href="#panel__driver__driverId__profile_shift">
+                                                                <span class="badge badge_get">get</span>
+                                                            <span class="parent">/driver/{driverId}/profile</span>/shift
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                                <div id="panel__driver__driverId__profile_shift" class="panel-collapse collapse">
+                                                    <div class="panel-body">
+                                                        <div class="list-group">
+                                                                <a href="#" data-toggle="modal" data-target="#_driver__driverId__profile_shift_get" class="list-group-item">
+                                                                    <span class="badge badge_get">get</span>
+                                                                    Get the driver shift summary
+                                                                </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            
+                                                    <div class="modal fade" id="_driver__driverId__profile_shift_get">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                    <h4 class="modal-title" id="myModalLabel">
+                                                                        <span class="badge badge_get">get</span>
+                                                                        <span class="parent">/driver/{driverId}/profile</span>/shift
+                                                                    </h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="alert alert-info"><p>Get the driver shift summary</p>
+                                            </div>
+                                            
+                                                                    <!-- Nav tabs -->
+                                                                    <ul class="nav nav-tabs">
+                                                                        <li class="active"><a href="#_driver__driverId__profile_shift_get_request" data-toggle="tab">Request</a></li>
+                                                                        <li><a href="#_driver__driverId__profile_shift_get_response" data-toggle="tab">Response</a></li>
+                                                                    </ul>
+                                            
+                                                                    <!-- Tab panes -->
+                                                                    <div class="tab-content">
+                                                                        <div class="tab-pane active" id="_driver__driverId__profile_shift_get_request">
+                                            
+                                            
+                                                                        </div>
+                                            
+                                                                        <div class="tab-pane" id="_driver__driverId__profile_shift_get_response">
+                                                                                <h4>Responses</h4>
+                                                                                <ul>
+                                                                                        <li><strong>200</strong>: Successfully retreived the shift summary</li>
+                                                                                        <li><strong>500</strong>: An exception occurred while retreiving shift summary</li>
+                                                                                </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                            
+                                            <div class="panel panel-white">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                        <a class="block collapsed" data-toggle="collapse" href="#panel__driver__driverId__profile_trip">
+                                                                <span class="badge badge_get">get</span>
+                                                            <span class="parent">/driver/{driverId}/profile</span>/trip
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                                <div id="panel__driver__driverId__profile_trip" class="panel-collapse collapse">
+                                                    <div class="panel-body">
+                                                        <div class="list-group">
+                                                                <a href="#" data-toggle="modal" data-target="#_driver__driverId__profile_trip_get" class="list-group-item">
+                                                                    <span class="badge badge_get">get</span>
+                                                                    Get the driver trip summary
+                                                                </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            
+                                                    <div class="modal fade" id="_driver__driverId__profile_trip_get">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                    <h4 class="modal-title" id="myModalLabel">
+                                                                        <span class="badge badge_get">get</span>
+                                                                        <span class="parent">/driver/{driverId}/profile</span>/trip
+                                                                    </h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="alert alert-info"><p>Get the driver trip summary</p>
+                                            </div>
+                                            
+                                                                    <!-- Nav tabs -->
+                                                                    <ul class="nav nav-tabs">
+                                                                        <li class="active"><a href="#_driver__driverId__profile_trip_get_request" data-toggle="tab">Request</a></li>
+                                                                        <li><a href="#_driver__driverId__profile_trip_get_response" data-toggle="tab">Response</a></li>
+                                                                    </ul>
+                                            
+                                                                    <!-- Tab panes -->
+                                                                    <div class="tab-content">
+                                                                        <div class="tab-pane active" id="_driver__driverId__profile_trip_get_request">
+                                            
+                                            
+                                                                        </div>
+                                            
+                                                                        <div class="tab-pane" id="_driver__driverId__profile_trip_get_response">
+                                                                                <h4>Responses</h4>
+                                                                                <ul>
+                                                                                        <li><strong>200</strong>: Successfully retreived the trip summary</li>
+                                                                                        <li><strong>500</strong>: An exception occurred while retreiving trip summary</li>
+                                                                                </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                            
+                                        <div class="panel panel-white">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a class="block collapsed" data-toggle="collapse" href="#panel__driver__driverId__shift">
+                                                        <span class="parent">/driver/{driverId}</span>/shift
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="panel__driver__driverId__shift" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <div class="list-group">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        
+                                        </div>
+                                        
+                                            <div class="panel panel-white">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                        <a class="block collapsed" data-toggle="collapse" href="#panel__driver__driverId__shift_in">
+                                                                <span class="badge badge_put">put</span>
+                                                            <span class="parent">/driver/{driverId}/shift</span>/in
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                                <div id="panel__driver__driverId__shift_in" class="panel-collapse collapse">
+                                                    <div class="panel-body">
+                                                        <div class="list-group">
+                                                                <a href="#" data-toggle="modal" data-target="#_driver__driverId__shift_in_put" class="list-group-item">
+                                                                    <span class="badge badge_put">put</span>
+                                                                    Set driver shift status to &#x60;IN&#x60;
+                                                                </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            
+                                                    <div class="modal fade" id="_driver__driverId__shift_in_put">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                    <h4 class="modal-title" id="myModalLabel">
+                                                                        <span class="badge badge_put">put</span>
+                                                                        <span class="parent">/driver/{driverId}/shift</span>/in
+                                                                    </h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="alert alert-info"><p>Set driver shift status to <code>IN</code></p>
+                                            </div>
+                                            
+                                                                    <!-- Nav tabs -->
+                                                                    <ul class="nav nav-tabs">
+                                                                        <li class="active"><a href="#_driver__driverId__shift_in_put_request" data-toggle="tab">Request</a></li>
+                                                                        <li><a href="#_driver__driverId__shift_in_put_response" data-toggle="tab">Response</a></li>
+                                                                    </ul>
+                                            
+                                                                    <!-- Tab panes -->
+                                                                    <div class="tab-content">
+                                                                        <div class="tab-pane active" id="_driver__driverId__shift_in_put_request">
+                                            
+                                            
+                                                                        </div>
+                                            
+                                                                        <div class="tab-pane" id="_driver__driverId__shift_in_put_response">
+                                                                                <h4>Responses</h4>
+                                                                                <ul>
+                                                                                        <li><strong>204</strong>: Successfully changed shift status to &#x60;IN&#x60;</li>
+                                                                                        <li><strong>500</strong>: An exception occurred while changing shift status</li>
+                                                                                </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                            
+                                            <div class="panel panel-white">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                        <a class="block collapsed" data-toggle="collapse" href="#panel__driver__driverId__shift_out">
+                                                                <span class="badge badge_put">put</span>
+                                                            <span class="parent">/driver/{driverId}/shift</span>/out
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                                <div id="panel__driver__driverId__shift_out" class="panel-collapse collapse">
+                                                    <div class="panel-body">
+                                                        <div class="list-group">
+                                                                <a href="#" data-toggle="modal" data-target="#_driver__driverId__shift_out_put" class="list-group-item">
+                                                                    <span class="badge badge_put">put</span>
+                                                                    Set driver shift status to &#x60;OUT&#x60;
+                                                                </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            
+                                                    <div class="modal fade" id="_driver__driverId__shift_out_put">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                    <h4 class="modal-title" id="myModalLabel">
+                                                                        <span class="badge badge_put">put</span>
+                                                                        <span class="parent">/driver/{driverId}/shift</span>/out
+                                                                    </h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="alert alert-info"><p>Set driver shift status to <code>OUT</code></p>
+                                            </div>
+                                            
+                                                                    <!-- Nav tabs -->
+                                                                    <ul class="nav nav-tabs">
+                                                                        <li class="active"><a href="#_driver__driverId__shift_out_put_request" data-toggle="tab">Request</a></li>
+                                                                        <li><a href="#_driver__driverId__shift_out_put_response" data-toggle="tab">Response</a></li>
+                                                                    </ul>
+                                            
+                                                                    <!-- Tab panes -->
+                                                                    <div class="tab-content">
+                                                                        <div class="tab-pane active" id="_driver__driverId__shift_out_put_request">
+                                            
+                                            
+                                                                        </div>
+                                            
+                                                                        <div class="tab-pane" id="_driver__driverId__shift_out_put_response">
+                                                                                <h4>Responses</h4>
+                                                                                <ul>
+                                                                                        <li><strong>204</strong>: Successfully changed shift status to &#x60;OUT&#x60;</li>
+                                                                                        <li><strong>500</strong>: An exception occurred while changing shift status</li>
+                                                                                </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                            
+                                        <div class="panel panel-white">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a class="block collapsed" data-toggle="collapse" href="#panel__driver__driverId__support">
+                                                            <span class="badge badge_post">post</span>
+                                                        <span class="parent">/driver/{driverId}</span>/support
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="panel__driver__driverId__support" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <div class="list-group">
+                                                            <a href="#" data-toggle="modal" data-target="#_driver__driverId__support_post" class="list-group-item">
+                                                                <span class="badge badge_post">post</span>
+                                                                Create a driver support
+                                                            </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        
+                                                <div class="modal fade" id="_driver__driverId__support_post">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                <h4 class="modal-title" id="myModalLabel">
+                                                                    <span class="badge badge_post">post</span>
+                                                                    <span class="parent">/driver/{driverId}</span>/support
+                                                                </h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="alert alert-info"><p>Create a driver support</p>
+                                        </div>
+                                        
+                                                                <!-- Nav tabs -->
+                                                                <ul class="nav nav-tabs">
+                                                                    <li class="active"><a href="#_driver__driverId__support_post_request" data-toggle="tab">Request</a></li>
+                                                                    <li><a href="#_driver__driverId__support_post_response" data-toggle="tab">Response</a></li>
+                                                                </ul>
+                                        
+                                                                <!-- Tab panes -->
+                                                                <div class="tab-content">
+                                                                    <div class="tab-pane active" id="_driver__driverId__support_post_request">
+                                        
+                                        
+                                                                            <h4>Body</h4>
+                                                                                <p><strong>Type: application/json</strong></p>
+                                                                                <pre>{
+                                        	&quot;trip&quot;: 0,
+                                        	&quot;category&quot;: {
+                                        		&quot;id&quot;: 0,
+                                        		&quot;name&quot;: &quot;Category&quot;
+                                        	},
+                                        	&quot;reason&quot;: {
+                                        		&quot;id&quot;: 0,
+                                        		&quot;name&quot;: &quot;Reason&quot;
+                                        	}
+                                        }</pre>
+                                                                    </div>
+                                        
+                                                                    <div class="tab-pane" id="_driver__driverId__support_post_response">
+                                                                            <h4>Responses</h4>
+                                                                            <ul>
+                                                                                    <li><strong>201</strong>: Successfully created the support</li>
+                                                                                    <li><strong>422</strong>: Validation error</li>
+                                                                                    <li><strong>500</strong>: An exception occurred while logging in</li>
+                                                                            </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                        
+                            </div>
+                        </div>
+                    </div>
+            </div>
+
+            <div class="col-md-3">
+                <div id="sidebar" class="hidden-print affix" role="complementary">
+                    <ul class="nav nav-pills nav-stacked">
+                            <li><a href="#_auth">/auth</a></li>
+                            <li><a href="#_driver">/driver</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

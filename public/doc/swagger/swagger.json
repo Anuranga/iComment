@@ -1,0 +1,589 @@
+{
+  "basePath": "/v2",
+  "consumes": [
+    "application/json"
+  ],
+  "definitions": {
+    "REQ_LoginItem": {
+      "definitions": {},
+      "properties": {
+        "password": {
+          "id": "/properties/password",
+          "type": "string"
+        },
+        "phone": {
+          "id": "/properties/phone",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "password",
+        "phone"
+      ],
+      "type": "object"
+    },
+    "RES_Propfile": {
+      "additionalProperties": false,
+      "definitions": {},
+      "properties": {
+        "data": {
+          "additionalItems": false,
+          "id": "/properties/data",
+          "items": {
+            "additionalProperties": false,
+            "id": "/properties/data/items",
+            "properties": {
+              "finance": {
+                "additionalProperties": false,
+                "id": "/properties/data/items/properties/finance",
+                "properties": {
+                  "bank": {
+                    "additionalProperties": false,
+                    "id": "/properties/data/items/properties/finance/properties/bank",
+                    "properties": {
+                      "account": {
+                        "id": "/properties/data/items/properties/finance/properties/bank/properties/account",
+                        "type": "string"
+                      },
+                      "branch": {
+                        "id": "/properties/data/items/properties/finance/properties/bank/properties/branch",
+                        "type": "string"
+                      },
+                      "name": {
+                        "id": "/properties/data/items/properties/finance/properties/bank/properties/name",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "profile": {
+                "additionalProperties": false,
+                "id": "/properties/data/items/properties/profile",
+                "properties": {
+                  "id": {
+                    "id": "/properties/data/items/properties/profile/properties/id",
+                    "type": "integer"
+                  },
+                  "language": {
+                    "additionalItems": false,
+                    "id": "/properties/data/items/properties/profile/properties/language",
+                    "items": {
+                      "id": "/properties/data/items/properties/profile/properties/language/items",
+                      "type": "integer"
+                    },
+                    "type": "array"
+                  },
+                  "name": {
+                    "id": "/properties/data/items/properties/profile/properties/name",
+                    "type": "string"
+                  },
+                  "phone": {
+                    "id": "/properties/data/items/properties/profile/properties/phone",
+                    "type": "string"
+                  },
+                  "photo": {
+                    "id": "/properties/data/items/properties/profile/properties/photo",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "vehicle": {
+                "additionalProperties": false,
+                "id": "/properties/data/items/properties/vehicle",
+                "properties": {
+                  "luggage": {
+                    "id": "/properties/data/items/properties/vehicle/properties/luggage",
+                    "type": "null"
+                  },
+                  "passengers": {
+                    "id": "/properties/data/items/properties/vehicle/properties/passengers",
+                    "type": "null"
+                  },
+                  "speed": {
+                    "id": "/properties/data/items/properties/vehicle/properties/speed",
+                    "type": "null"
+                  },
+                  "type": {
+                    "additionalProperties": false,
+                    "id": "/properties/data/items/properties/vehicle/properties/type",
+                    "properties": {
+                      "id": {
+                        "id": "/properties/data/items/properties/vehicle/properties/type/properties/id",
+                        "type": "null"
+                      },
+                      "name": {
+                        "id": "/properties/data/items/properties/vehicle/properties/type/properties/name",
+                        "type": "null"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RES_ServerException": {
+      "definitions": {},
+      "properties": {
+        "errors": {
+          "id": "/properties/errors",
+          "items": {
+            "id": "/properties/errors/items",
+            "properties": {
+              "code": {
+                "id": "/properties/errors/items/properties/code",
+                "type": "integer"
+              },
+              "file": {
+                "id": "/properties/errors/items/properties/file",
+                "type": "string"
+              },
+              "line": {
+                "id": "/properties/errors/items/properties/line",
+                "type": "integer"
+              },
+              "message": {
+                "id": "/properties/errors/items/properties/message",
+                "type": "string"
+              },
+              "trace": {
+                "id": "/properties/errors/items/properties/trace",
+                "type": "string"
+              },
+              "type": {
+                "id": "/properties/errors/items/properties/type",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RES_ShiftSummary": {
+      "definitions": {},
+      "properties": {
+        "data": {
+          "id": "/properties/data",
+          "items": {
+            "id": "/properties/data/items",
+            "properties": {
+              "directional": {
+                "default": 0,
+                "description": "An explanation about the purpose of this instance.",
+                "id": "/properties/data/items/properties/directional",
+                "title": "The Directional Schema.",
+                "type": "integer"
+              },
+              "rating": {
+                "default": 0,
+                "description": "An explanation about the purpose of this instance.",
+                "id": "/properties/data/items/properties/rating",
+                "title": "The Rating Schema.",
+                "type": "integer"
+              },
+              "shift": {
+                "default": "",
+                "description": "An explanation about the purpose of this instance.",
+                "id": "/properties/data/items/properties/shift",
+                "title": "The Shift Schema.",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RES_Token": {
+      "definitions": {},
+      "properties": {
+        "data": {
+          "id": "/properties/data",
+          "properties": {
+            "token": {
+              "id": "/properties/data/properties/token",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "RES_TripSummary": {
+      "additionalProperties": false,
+      "definitions": {},
+      "properties": {
+        "data": {
+          "additionalItems": false,
+          "id": "/properties/data",
+          "items": {
+            "additionalProperties": false,
+            "id": "/properties/data/items",
+            "properties": {
+              "earnings": {
+                "additionalProperties": false,
+                "id": "/properties/data/items/properties/earnings",
+                "properties": {
+                  "total": {
+                    "id": "/properties/data/items/properties/earnings/properties/total",
+                    "type": "integer"
+                  }
+                },
+                "type": "object"
+              },
+              "time": {
+                "additionalProperties": false,
+                "id": "/properties/data/items/properties/time",
+                "properties": {
+                  "total": {
+                    "id": "/properties/data/items/properties/time/properties/total",
+                    "type": "integer"
+                  }
+                },
+                "type": "object"
+              },
+              "trips": {
+                "additionalProperties": false,
+                "id": "/properties/data/items/properties/trips",
+                "properties": {
+                  "completed": {
+                    "id": "/properties/data/items/properties/trips/properties/completed",
+                    "type": "integer"
+                  },
+                  "driver_cancelled": {
+                    "id": "/properties/data/items/properties/trips/properties/driver_cancelled",
+                    "type": "integer"
+                  },
+                  "passenger_cancelled": {
+                    "id": "/properties/data/items/properties/trips/properties/passenger_cancelled",
+                    "type": "integer"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RES_ValidationError": {
+      "definitions": {},
+      "properties": {
+        "errors": {
+          "id": "/properties/errors",
+          "properties": {
+            "phone": {
+              "id": "/properties/errors/properties/phone",
+              "items": {
+                "id": "/properties/errors/properties/phone/items",
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "host": "api.sample.pickme.lk",
+  "info": {
+    "title": "PickMe Sample",
+    "version": "2.0.0"
+  },
+  "paths": {
+    "/auth/login": {
+      "post": {
+        "description": "Login to the device and get a token.",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/REQ_LoginItem"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully logged-in",
+            "schema": {
+              "$ref": "#/definitions/RES_Token"
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/RES_ValidationError"
+            }
+          },
+          "500": {
+            "description": "An exception occurred while logging in",
+            "schema": {
+              "$ref": "#/definitions/RES_ServerException"
+            }
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "description": "Logout from the device.",
+        "parameters": [
+          {
+            "description": "The authentication token returned by a successful login.\nSent as a `Bearer` token.\n\n`Bearer <token>`\n",
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully logged-out"
+          },
+          "500": {
+            "description": "An exception occurred while logging out",
+            "schema": {
+              "$ref": "#/definitions/RES_ServerException"
+            }
+          }
+        }
+      }
+    },
+    "/driver/{driverId}/profile": {
+      "get": {
+        "description": "Get the driver profile",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "driverId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The authentication token returned by a successful login.\nSent as a `Bearer` token.\n\n`Bearer <token>`\n",
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retreived the profile"
+          },
+          "500": {
+            "description": "An exception occurred while retreiving profile",
+            "schema": {
+              "$ref": "#/definitions/RES_ServerException"
+            }
+          }
+        }
+      }
+    },
+    "/driver/{driverId}/profile/shift": {
+      "get": {
+        "description": "Get the driver shift summary",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "driverId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The authentication token returned by a successful login.\nSent as a `Bearer` token.\n\n`Bearer <token>`\n",
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retreived the shift summary",
+            "schema": {
+              "$ref": "#/definitions/RES_ShiftSummary"
+            }
+          },
+          "500": {
+            "description": "An exception occurred while retreiving shift summary",
+            "schema": {
+              "$ref": "#/definitions/RES_ServerException"
+            }
+          }
+        }
+      }
+    },
+    "/driver/{driverId}/profile/trip": {
+      "get": {
+        "description": "Get the driver trip summary",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "driverId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The authentication token returned by a successful login.\nSent as a `Bearer` token.\n\n`Bearer <token>`\n",
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retreived the trip summary",
+            "schema": {
+              "$ref": "#/definitions/RES_TripSummary"
+            }
+          },
+          "500": {
+            "description": "An exception occurred while retreiving trip summary",
+            "schema": {
+              "$ref": "#/definitions/RES_ServerException"
+            }
+          }
+        }
+      }
+    },
+    "/driver/{driverId}/shift/in": {
+      "put": {
+        "description": "Set driver shift status to `IN`",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "driverId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The authentication token returned by a successful login.\nSent as a `Bearer` token.\n\n`Bearer <token>`\n",
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully changed shift status to `IN`"
+          },
+          "500": {
+            "description": "An exception occurred while changing shift status",
+            "schema": {
+              "$ref": "#/definitions/RES_ServerException"
+            }
+          }
+        }
+      }
+    },
+    "/driver/{driverId}/shift/out": {
+      "put": {
+        "description": "Set driver shift status to `OUT`",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "driverId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The authentication token returned by a successful login.\nSent as a `Bearer` token.\n\n`Bearer <token>`\n",
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully changed shift status to `OUT`"
+          },
+          "500": {
+            "description": "An exception occurred while changing shift status",
+            "schema": {
+              "$ref": "#/definitions/RES_ServerException"
+            }
+          }
+        }
+      }
+    },
+    "/driver/{driverId}/support": {
+      "post": {
+        "description": "Create a driver support",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "driverId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The authentication token returned by a successful login.\nSent as a `Bearer` token.\n\n`Bearer <token>`\n",
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successfully created the support"
+          },
+          "422": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/RES_ValidationError"
+            }
+          },
+          "500": {
+            "description": "An exception occurred while logging in",
+            "schema": {
+              "$ref": "#/definitions/RES_ServerException"
+            }
+          }
+        }
+      }
+    }
+  },
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "securityDefinitions": {},
+  "swagger": "2.0"
+}

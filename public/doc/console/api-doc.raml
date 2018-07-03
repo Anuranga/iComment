@@ -1,0 +1,1016 @@
+#%RAML 0.8
+
+title: PickMe Sample
+version: 2.0.0
+mediaType: application/json
+protocols: [HTTP, HTTPS]
+baseUri: http://api.sample.pickme.lk/v2
+documentation:
+  - title: Introduction
+    content: |
+      This project is a starting point and a template for building PickMe service APIs using PHP.
+
+schemas:
+  - RES_ValidationError: | 
+     {
+       "$schema": "http://json-schema.org/draft-04/schema#",
+       "definitions": {},
+       "id": "http://pickme.lk",
+       "properties": {
+         "errors": {
+           "id": "/properties/errors",
+           "properties": {
+             "phone": {
+               "id": "/properties/errors/properties/phone",
+               "items": {
+                 "id": "/properties/errors/properties/phone/items",
+                 "type": "string"
+               },
+               "type": "array"
+             }
+           },
+           "type": "object"
+         }
+       },
+       "type": "object"
+     }
+  - RES_ServerException: | 
+     {
+       "$schema": "http://json-schema.org/draft-04/schema#",
+       "definitions": {},
+       "id": "http://pickme.lk",
+       "properties": {
+         "errors": {
+           "id": "/properties/errors",
+           "items": {
+             "id": "/properties/errors/items",
+             "properties": {
+               "code": {
+                 "id": "/properties/errors/items/properties/code",
+                 "type": "integer"
+               },
+               "file": {
+                 "id": "/properties/errors/items/properties/file",
+                 "type": "string"
+               },
+               "line": {
+                 "id": "/properties/errors/items/properties/line",
+                 "type": "integer"
+               },
+               "message": {
+                 "id": "/properties/errors/items/properties/message",
+                 "type": "string"
+               },
+               "trace": {
+                 "id": "/properties/errors/items/properties/trace",
+                 "type": "string"
+               },
+               "type": {
+                 "id": "/properties/errors/items/properties/type",
+                 "type": "string"
+               }
+             },
+             "type": "object"
+           },
+           "type": "array"
+         }
+       },
+       "type": "object"
+     }
+
+  - REQ_LoginItem: | 
+     {
+     	"$schema": "http://json-schema.org/draft-04/schema#",
+     	"definitions": {},
+     	"id": "http://pickme.lk",
+     	"properties": {
+     		"password": {
+     			"id": "/properties/password",
+     			"type": "string",
+     			"required": true
+     		},
+     		"phone": {
+     			"id": "/properties/phone",
+     			"type": "integer",
+     			"required": true
+     		}
+     	},
+     	"type": "object"
+     }
+  - RES_Token: | 
+     {
+     	"$schema": "http://json-schema.org/draft-04/schema#",
+     	"definitions": {},
+     	"id": "http://pickme.lk",
+     	"properties": {
+     		"data": {
+     			"id": "/properties/data",
+     			"properties": {
+     				"token": {
+     					"id": "/properties/data/properties/token",
+     					"type": "string"
+     				}
+     			},
+     			"type": "object"
+     		}
+     	},
+     	"type": "object"
+     }
+
+  - RES_Propfile: | 
+     {
+     	"definitions": {},
+     	"$schema": "http://json-schema.org/draft-04/schema#",
+     	"id": "http://pickme.lk",
+     	"type": "object",
+     	"additionalProperties": false,
+     	"properties": {
+     		"data": {
+     			"id": "/properties/data",
+     			"type": "array",
+     			"additionalItems": false,
+     			"items": {
+     				"id": "/properties/data/items",
+     				"type": "object",
+     				"additionalProperties": false,
+     				"properties": {
+     					"profile": {
+     						"id": "/properties/data/items/properties/profile",
+     						"type": "object",
+     						"additionalProperties": false,
+     						"properties": {
+     							"id": {
+     								"id": "/properties/data/items/properties/profile/properties/id",
+     								"type": "integer"
+     							},
+     							"name": {
+     								"id": "/properties/data/items/properties/profile/properties/name",
+     								"type": "string"
+     							},
+     							"phone": {
+     								"id": "/properties/data/items/properties/profile/properties/phone",
+     								"type": "string"
+     							},
+     							"photo": {
+     								"id": "/properties/data/items/properties/profile/properties/photo",
+     								"type": "string"
+     							},
+     							"language": {
+     								"id": "/properties/data/items/properties/profile/properties/language",
+     								"type": "array",
+     								"additionalItems": false,
+     								"items": {
+     									"id": "/properties/data/items/properties/profile/properties/language/items",
+     									"type": "integer"
+     								}
+     							}
+     						}
+     					},
+     					"vehicle": {
+     						"id": "/properties/data/items/properties/vehicle",
+     						"type": "object",
+     						"additionalProperties": false,
+     						"properties": {
+     							"type": {
+     								"id": "/properties/data/items/properties/vehicle/properties/type",
+     								"type": "object",
+     								"additionalProperties": false,
+     								"properties": {
+     									"id": {
+     										"id": "/properties/data/items/properties/vehicle/properties/type/properties/id",
+     										"type": "null"
+     									},
+     									"name": {
+     										"id": "/properties/data/items/properties/vehicle/properties/type/properties/name",
+     										"type": "null"
+     									}
+     								}
+     							},
+     							"passengers": {
+     								"id": "/properties/data/items/properties/vehicle/properties/passengers",
+     								"type": "null"
+     							},
+     							"luggage": {
+     								"id": "/properties/data/items/properties/vehicle/properties/luggage",
+     								"type": "null"
+     							},
+     							"speed": {
+     								"id": "/properties/data/items/properties/vehicle/properties/speed",
+     								"type": "null"
+     							}
+     						}
+     					},
+     					"finance": {
+     						"id": "/properties/data/items/properties/finance",
+     						"type": "object",
+     						"additionalProperties": false,
+     						"properties": {
+     							"bank": {
+     								"id": "/properties/data/items/properties/finance/properties/bank",
+     								"type": "object",
+     								"additionalProperties": false,
+     								"properties": {
+     									"name": {
+     										"id": "/properties/data/items/properties/finance/properties/bank/properties/name",
+     										"type": "string"
+     									},
+     									"branch": {
+     										"id": "/properties/data/items/properties/finance/properties/bank/properties/branch",
+     										"type": "string"
+     									},
+     									"account": {
+     										"id": "/properties/data/items/properties/finance/properties/bank/properties/account",
+     										"type": "string"
+     									}
+     								}
+     							}
+     						}
+     					}
+     				}
+     			}
+     		}
+     	}
+     }
+  - RES_ShiftSummary: | 
+     {
+     	"definitions": {},
+     	"$schema": "http://json-schema.org/draft-04/schema#",
+     	"id": "http://pickme.lk",
+     	"type": "object",
+     	"properties": {
+     		"data": {
+     			"id": "/properties/data",
+     			"type": "array",
+     			"items": {
+     				"id": "/properties/data/items",
+     				"type": "object",
+     				"properties": {
+     					"shift": {
+     						"id": "/properties/data/items/properties/shift",
+     						"type": "string",
+     						"title": "The Shift Schema.",
+     						"description": "An explanation about the purpose of this instance.",
+     						"default": ""
+     					},
+     					"rating": {
+     						"id": "/properties/data/items/properties/rating",
+     						"type": "integer",
+     						"title": "The Rating Schema.",
+     						"description": "An explanation about the purpose of this instance.",
+     						"default": 0
+     					},
+     					"directional": {
+     						"id": "/properties/data/items/properties/directional",
+     						"type": "integer",
+     						"title": "The Directional Schema.",
+     						"description": "An explanation about the purpose of this instance.",
+     						"default": 0
+     					}
+     				}
+     			}
+     		}
+     	}
+     }
+  - RES_TripSummary: | 
+     {
+     	"definitions": {},
+     	"$schema": "http://json-schema.org/draft-04/schema#",
+     	"id": "http://pickme.lk",
+     	"type": "object",
+     	"additionalProperties": false,
+     	"properties": {
+     		"data": {
+     			"id": "/properties/data",
+     			"type": "array",
+     			"additionalItems": false,
+     			"items": {
+     				"id": "/properties/data/items",
+     				"type": "object",
+     				"additionalProperties": false,
+     				"properties": {
+     					"trips": {
+     						"id": "/properties/data/items/properties/trips",
+     						"type": "object",
+     						"additionalProperties": false,
+     						"properties": {
+     							"completed": {
+     								"id": "/properties/data/items/properties/trips/properties/completed",
+     								"type": "integer"
+     							},
+     							"passenger_cancelled": {
+     								"id": "/properties/data/items/properties/trips/properties/passenger_cancelled",
+     								"type": "integer"
+     							},
+     							"driver_cancelled": {
+     								"id": "/properties/data/items/properties/trips/properties/driver_cancelled",
+     								"type": "integer"
+     							}
+     						}
+     					},
+     					"earnings": {
+     						"id": "/properties/data/items/properties/earnings",
+     						"type": "object",
+     						"additionalProperties": false,
+     						"properties": {
+     							"total": {
+     								"id": "/properties/data/items/properties/earnings/properties/total",
+     								"type": "integer"
+     							}
+     						}
+     					},
+     					"time": {
+     						"id": "/properties/data/items/properties/time",
+     						"type": "object",
+     						"additionalProperties": false,
+     						"properties": {
+     							"total": {
+     								"id": "/properties/data/items/properties/time/properties/total",
+     								"type": "integer"
+     							}
+     						}
+     					}
+     				}
+     			}
+     		}
+     	}
+     }
+
+traits:
+  - Filtereble:
+     queryParameters:
+       filters:
+         displayName: Search Filters
+     
+         description: |
+           Search filters that can be used to manipulate response dataset.
+           The filter is organized as follows.
+     
+           `?filters=[{"field_1":"<field-name>", "value":<field-value>, "operator":<operator>},
+             {"field_2":"<field-name>", "value":<field-value>, "operator":<operator>},
+             ...]`
+     
+           `<operator>` is an integer and used to indicate the operator to be used with the filter.
+           They are as follows.
+           - `1` : Equals
+           - `2` : Like
+           - `3` : Begins With
+           - `4` : Ends With
+           - `5` : Between
+     
+         type: string
+         required: false
+     
+         # NOTES:
+         #   - in description part end line with `two spaces` when you need a new line
+     
+  - Truncatable:
+     queryParameters:
+       fields:
+         displayName: Return Fields
+     
+         description: |
+           Fields to return in the response dataset. The fields to return are given as follows.
+     
+           `?fields=["field_1", "field_2", ...]`
+     
+         type: string
+         required: false
+     
+  - Paginatable:
+     queryParameters:
+       page:
+         displayName: Paginate
+     
+         description: |
+           Pagination details that contains
+             - page (integer) requested page
+             - perPage (integer) records per page
+     
+           `?paging={"page":1, "perPage":10}`
+     
+         type: string
+         required: false
+     
+  - Authenticatable:
+     headers:
+       Authorization:
+         displayName: Authentication Token
+     
+         description: |
+           The authentication token returned by a successful login.
+           Sent as a `Bearer` token.
+     
+           `Bearer <token>`
+     
+         type: string
+         required: true
+     
+
+
+# ======================================================================================================================
+#   AUTHENTICATE API CALLS
+# ======================================================================================================================
+
+# /authenticate ___
+/auth:
+
+  # login
+  /login:
+    displayName: Login
+
+    post:
+      description: Login to the device and get a token.
+      body:
+        application/json:
+          schema: REQ_LoginItem
+          example: | 
+
+              {
+
+              	"phone": 111111111,
+
+              	"password":"password"
+
+              }
+
+              
+      responses:
+        200: # logged-in
+          description: Successfully logged-in
+          body:
+            application/json:
+              schema: RES_Token
+              example: | 
+
+                  {
+
+                    "data": {
+
+                      "token": "authenticationtoken"
+
+                    }
+
+                  }
+
+                  
+        422: # validation error
+          description: Validation error
+          body:
+            application/json:
+              schema: RES_ValidationError
+              example: | 
+
+                  {
+
+                    "errors": {
+
+                      "phone": [
+
+                        "The phone has already been taken."
+
+                      ]
+
+                    }
+
+                  }
+
+                  
+        500: # exception
+          description: An exception occurred while logging in
+          body:
+           application/json:
+            schema: RES_ServerException
+            example: | 
+
+                {
+
+                  "errors": [
+
+                    {
+
+                      "message": "",
+
+                      "code": 0,
+
+                      "type": "ExceptionType",
+
+                      "line": 0,
+
+                      "file": "file",
+
+                      "trace": "stack trace"
+
+                    }
+
+                  ]
+
+                }
+
+                
+
+
+  # logout
+  /logout:
+    displayName: Logout
+
+    post:
+      is: [Authenticatable]
+      description: Logout from the device.
+      responses:
+        204: # Logged-out
+          description: Successfully logged-out
+        500: # exception
+          description: An exception occurred while logging out
+          body:
+           application/json:
+            schema: RES_ServerException
+            example: | 
+
+                {
+
+                  "errors": [
+
+                    {
+
+                      "message": "",
+
+                      "code": 0,
+
+                      "type": "ExceptionType",
+
+                      "line": 0,
+
+                      "file": "file",
+
+                      "trace": "stack trace"
+
+                    }
+
+                  ]
+
+                }
+
+                
+
+
+# ======================================================================================================================
+#   DRIVER STATUS UPDATE API CALLS
+# ======================================================================================================================
+
+# /driver ___
+/driver:
+
+  # driver_id
+  /{driverId}:
+
+    # /driver/{driverId}/profile ___
+    /profile:
+      displayName: Driver Profile
+
+      get:
+        is: [Authenticatable]
+        description: Get the driver profile
+        responses:
+          200:
+            description: Successfully retreived the profile
+            body:
+              application/json:
+                schema: RES_Profile
+                example: | 
+
+                    {
+
+                      "data": [
+
+                        {
+
+                          "profile": {
+
+                            "id": 9624,
+
+                            "name": "Ponting",
+
+                            "phone": "777169807",
+
+                            "photo": "575e85ac4c816.png",
+
+                            "language": [
+
+                              1,
+
+                              2,
+
+                              3,
+
+                              5
+
+                            ]
+
+                          },
+
+                          "vehicle": {
+
+                            "type": {
+
+                              "id": null,
+
+                              "name": null
+
+                            },
+
+                            "passengers": null,
+
+                            "luggage": null,
+
+                            "speed": null
+
+                          },
+
+                          "finance": {
+
+                            "bank": {
+
+                              "name": "HNB",
+
+                              "branch": "KURUNEGALA-19",
+
+                              "account": "123456789012"
+
+                            }
+
+                          }
+
+                        }
+
+                      ]
+
+                    }
+          500: # exception
+            description: An exception occurred while retreiving profile
+            body:
+             application/json:
+              schema: RES_ServerException
+              example: | 
+
+                  {
+
+                    "errors": [
+
+                      {
+
+                        "message": "",
+
+                        "code": 0,
+
+                        "type": "ExceptionType",
+
+                        "line": 0,
+
+                        "file": "file",
+
+                        "trace": "stack trace"
+
+                      }
+
+                    ]
+
+                  }
+
+                  
+
+
+      # /driver/{driverId}/profile/shift ___
+      /shift:
+        displayName: Driver Shift Summary
+
+        get:
+          is: [Authenticatable]
+          description: Get the driver shift summary
+          responses:
+            200:
+              description: Successfully retreived the shift summary
+              body:
+                application/json:
+                  schema: RES_ShiftSummary
+                  example: | 
+
+                      {
+
+                        "data": [
+
+                          {
+
+                            "shift": "IN",
+
+                            "rating": 0,
+
+                            "directional": 0
+
+                          }
+
+                        ]
+
+                      }
+            500: # exception
+              description: An exception occurred while retreiving shift summary
+              body:
+               application/json:
+                schema: RES_ServerException
+                example: | 
+
+                    {
+
+                      "errors": [
+
+                        {
+
+                          "message": "",
+
+                          "code": 0,
+
+                          "type": "ExceptionType",
+
+                          "line": 0,
+
+                          "file": "file",
+
+                          "trace": "stack trace"
+
+                        }
+
+                      ]
+
+                    }
+
+                    
+
+
+      # /driver/{driverId}/profile/trip ___
+      /trip:
+        displayName: Driver Trip Summary
+
+        get:
+          is: [Authenticatable]
+          description: Get the driver trip summary
+          responses:
+            200:
+              description: Successfully retreived the trip summary
+              body:
+                application/json:
+                  schema: RES_TripSummary
+                  example: | 
+
+                      {
+
+                        "data": [
+
+                          {
+
+                            "trips": {
+
+                              "completed": 0,
+
+                              "passenger_cancelled": 0,
+
+                              "driver_cancelled": 0
+
+                            },
+
+                            "earnings": {
+
+                              "total": 0
+
+                            },
+
+                            "time": {
+
+                              "total": 0
+
+                            }
+
+                          }
+
+                        ]
+
+                      }
+            500: # exception
+              description: An exception occurred while retreiving trip summary
+              body:
+               application/json:
+                schema: RES_ServerException
+                example: | 
+
+                    {
+
+                      "errors": [
+
+                        {
+
+                          "message": "",
+
+                          "code": 0,
+
+                          "type": "ExceptionType",
+
+                          "line": 0,
+
+                          "file": "file",
+
+                          "trace": "stack trace"
+
+                        }
+
+                      ]
+
+                    }
+
+                    
+
+
+    # shift
+    /shift:
+
+      # /driver/{driverId}/shift/in ___
+      /in:
+        displayName: Driver shift `IN`
+
+        put:
+          is: [Authenticatable]
+          description: Set driver shift status to `IN`
+          responses:
+            204: # shift status set to in
+              description: Successfully changed shift status to `IN`
+            500: # exception
+              description: An exception occurred while changing shift status
+              body:
+               application/json:
+                schema: RES_ServerException
+                example: | 
+
+                    {
+
+                      "errors": [
+
+                        {
+
+                          "message": "",
+
+                          "code": 0,
+
+                          "type": "ExceptionType",
+
+                          "line": 0,
+
+                          "file": "file",
+
+                          "trace": "stack trace"
+
+                        }
+
+                      ]
+
+                    }
+
+                    
+
+
+      # /driver/{driverId}/shift/out ___
+      /out:
+        displayName: Driver shift `OUT`
+
+        put:
+          is: [Authenticatable]
+          description: Set driver shift status to `OUT`
+          responses:
+            204: # shift status set to out
+              description: Successfully changed shift status to `OUT`
+            500: # exception
+              description: An exception occurred while changing shift status
+              body:
+               application/json:
+                schema: RES_ServerException
+                example: | 
+
+                    {
+
+                      "errors": [
+
+                        {
+
+                          "message": "",
+
+                          "code": 0,
+
+                          "type": "ExceptionType",
+
+                          "line": 0,
+
+                          "file": "file",
+
+                          "trace": "stack trace"
+
+                        }
+
+                      ]
+
+                    }
+
+                    
+
+
+    # /driver/{driverId}/support ___
+    /support:
+
+      post:
+        is: [Authenticatable]
+        description: Create a driver support
+        body:
+          application/json:
+            schema: REQ_SupportItem
+            example: | 
+
+                {
+
+                	"trip": 0,
+
+                	"category": {
+
+                		"id": 0,
+
+                		"name": "Category"
+
+                	},
+
+                	"reason": {
+
+                		"id": 0,
+
+                		"name": "Reason"
+
+                	}
+
+                }
+        responses:
+          201: # logged-in
+            description: Successfully created the support
+          422: # validation error
+            description: Validation error
+            body:
+              application/json:
+                schema: RES_ValidationError
+                example: | 
+
+                    {
+
+                      "errors": {
+
+                        "phone": [
+
+                          "The phone has already been taken."
+
+                        ]
+
+                      }
+
+                    }
+
+                    
+          500: # exception
+            description: An exception occurred while logging in
+            body:
+             application/json:
+              schema: RES_ServerException
+              example: | 
+
+                  {
+
+                    "errors": [
+
+                      {
+
+                        "message": "",
+
+                        "code": 0,
+
+                        "type": "ExceptionType",
+
+                        "line": 0,
+
+                        "file": "file",
+
+                        "trace": "stack trace"
+
+                      }
+
+                    ]
+
+                  }
+
+                  
+
+
+
+# -----------
+# Merged with ramlMerge.php
+# http://www.mikestowe.com
+
