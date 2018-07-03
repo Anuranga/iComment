@@ -1,0 +1,54 @@
+{
+    "name": "pickme/passenger-portal-api",
+    "description": "Pickme Passenger Portal API",
+    "keywords": ["pickme", "passenger-portal", "api"],
+    "license": "Proprietary",
+    "type": "project",
+    "require": {
+        "php": ">=7.1.0",
+        "laravel/lumen-framework": "5.4.*",
+        "vlucas/phpdotenv": "~2.2",
+        "nesbot/carbon": "^1.22",
+        "guzzlehttp/guzzle": "^6.3",
+        "vluzrmos/lumen-cors": "2.1.*",
+        "firebase/php-jwt": "^5.0",
+        "pickme/php/php-utils": "1.*"
+    },
+    "require-dev": {
+        "fzaninotto/faker": "~1.4",
+        "phpunit/phpunit": "~6.0",
+        "mockery/mockery": "~0.9",
+        "Xethron/migrations-generator": "^2.0",
+        "phpmd/phpmd": "@stable"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Manager\\": "Manager/",
+            "Tests\\": "tests/"
+        }
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/",
+            "database/"
+        ]
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "php -r \"copy('.env.example', '.env');\""
+        ]
+    },
+    "repositories": [
+        {
+            "type":"vcs",
+            "url": "http://gitlab.mytaxi.lk/pickme/php/php-utils.git"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "preferred-install": "dist",
+        "secure-http": false
+    }
+}
