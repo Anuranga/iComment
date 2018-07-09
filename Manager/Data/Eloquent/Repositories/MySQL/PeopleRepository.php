@@ -1,7 +1,9 @@
 <?php declare(strict_types = 1);
 
 namespace Manager\Data\Eloquent\Repositories\MySQL;
+
 use Manager\Data\Eloquent\Models\MobileUser;
+use Manager\Data\Eloquent\Models\UserComment;
 use Manager\Domain\Boundary\Repositories\PeopleRepositoryInterface;
 use Manager\Domain\Entities\User;
 use Mockery\Exception;
@@ -18,15 +20,19 @@ class PeopleRepository implements PeopleRepositoryInterface
      */
     private $mobileUser;
 
+    private $userComment;
+
     /**
      * PeopleRepository constructor.
      *
      * @param MobileUser $mobileUser
      */
-    public function __construct(MobileUser $mobileUser)
+    public function __construct(MobileUser $mobileUser,
+                                UserComment $userComment)
     {
 
         $this->mobileUser = $mobileUser;
+        $this->userComment = $userComment;
     }
 
 
@@ -50,25 +56,6 @@ class PeopleRepository implements PeopleRepositoryInterface
         }
 
         return $this->mapPeopleToUser($request);
-    }
-
-
-    /**
-     * @param $request
-     * @return User
-     */
-    private function mapPeopleToUser($request) : User
-    {
-
-        $user = new User();
-
-        $user->id = $request->id;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = $request->password;
-        //$user->role = $request->user_type
-
-        return $user;
     }
 
 
@@ -111,4 +98,56 @@ class PeopleRepository implements PeopleRepositoryInterface
                 'code' => '200'];
         }
     }
+
+
+    public function insertUserComment($data,$id)
+    {
+        app('db')->beginTransaction();
+       try{
+            $userComment = new UserComment();
+            $userComment->lat = $data['lat'];
+            $userComment->lon = $data['lon'];
+            $userComment->image = $data['image'];
+            $userComment->user_id = $id;
+            $userComment->save();
+
+            app('db')->commit();
+
+            return ['status' => 'success',
+                'code' => '200'
+            ];
+        }catch (Exception $exception){
+
+            app('db')->rollback();
+
+            return ['error' => $exception->getMessage(),
+            'code' => '200'];
+        }
+    }
+
+
+    public function getUserComment($lat, $lon)
+    {
+        //dd($lon);
+    }
+
+
+    /**
+     * @param $request
+     * @return User
+     */
+    private function mapPeopleToUser($request) : User
+    {
+
+        $user = new User();
+
+        $user->id = $request->id;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        //$user->role = $request->user_type
+
+        return $user;
+    }
+
 }

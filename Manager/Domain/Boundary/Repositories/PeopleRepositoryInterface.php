@@ -20,4 +20,20 @@ interface PeopleRepositoryInterface
      * @return User
      */
     public function insertPeople($data,$id = null);
+
+
+    /**
+     * @param $data
+     * @param $id
+     * @return mixed
+     */
+    public function insertUserComment($data,$id);
+
+    /**
+     * @param $lat
+     * @param $lon
+     * @return mixed
+     */
+    public function getUserComment($lat, $lon);
+
 }

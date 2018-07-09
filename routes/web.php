@@ -33,13 +33,17 @@ $app->group(['prefix' => 'v1'], function () use ($app)
 
     });
 
-    $app->group(['prefix' => 'myComment'], function () use ($app) {
+    $app->group(['prefix' => 'iComment'], function () use ($app) {
 
         $app->group(['middleware' => App\Http\Middleware\AuthMiddleware::class], function () use ($app) {
 
             $app->post('mobileUser', 'MobileUserController@insertMobileUser');
 
             $app->post('mobileUser/{id}', 'MobileUserController@insertMobileUser');
+
+            $app->post('userComment/{id}', 'MobileUserController@insertUserComment');
+
+            $app->get('getuserComment/{lat}/{lon}', 'MobileUserController@getUserComment');
         });
 
     });
