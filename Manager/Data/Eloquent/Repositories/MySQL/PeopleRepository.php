@@ -109,7 +109,6 @@ class PeopleRepository implements PeopleRepositoryInterface
     {
        app('db')->beginTransaction();
        try{
-            //$userComment = new UserComment();
             $this->userComment->lat = $data['lat'];
             $this->userComment->lon = $data['lon'];
             $this->userComment->image = $data['image'];
