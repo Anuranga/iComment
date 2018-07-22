@@ -100,16 +100,22 @@ class PeopleRepository implements PeopleRepositoryInterface
     }
 
 
-    public function insertUserComment($data,$id)
+    /**
+     * @param $data
+     * @param $id
+     * @return array|mixed
+     */
+    public function insertUserComment($data, $id)
     {
-        app('db')->beginTransaction();
+       app('db')->beginTransaction();
        try{
-            $userComment = new UserComment();
-            $userComment->lat = $data['lat'];
-            $userComment->lon = $data['lon'];
-            $userComment->image = $data['image'];
-            $userComment->user_id = $id;
-            $userComment->save();
+            //$userComment = new UserComment();
+            $this->userComment->lat = $data['lat'];
+            $this->userComment->lon = $data['lon'];
+            $this->userComment->image = $data['image'];
+            $this->userComment->user_id = $id;
+            $this->userComment->meassage = $data['message'];
+            $this->userComment->save();
 
             app('db')->commit();
 
@@ -117,7 +123,6 @@ class PeopleRepository implements PeopleRepositoryInterface
                 'code' => '200'
             ];
         }catch (Exception $exception){
-
             app('db')->rollback();
 
             return ['error' => $exception->getMessage(),
@@ -126,6 +131,11 @@ class PeopleRepository implements PeopleRepositoryInterface
     }
 
 
+    /**
+     * @param $lat
+     * @param $lon
+     * @return mixed|void
+     */
     public function getUserComment($lat, $lon)
     {
         //dd($lon);

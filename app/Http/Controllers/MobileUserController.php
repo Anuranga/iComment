@@ -66,8 +66,9 @@ class MobileUserController extends Controller
         $id = $this->session->getUserId();
 
         $validationRules = [
-            'lat' => 'required',
-            'lon' => 'required|numeric'
+            'lat' => 'required|numeric',
+            'lon' => 'required|numeric',
+            'message' => 'required'
         ];
         $this->validate($request, $validationRules);
 
